@@ -1,7 +1,6 @@
 {
   "name": "book",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://okadamari.github.io/book",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
