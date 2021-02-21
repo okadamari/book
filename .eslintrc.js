@@ -17,6 +17,8 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-app',
+    "react-app/jest",
     '@typescript-eslint',
   ],
   rules: {
