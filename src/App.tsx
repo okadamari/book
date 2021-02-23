@@ -53,7 +53,7 @@ export default function Album() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
@@ -98,6 +98,6 @@ export default function Album() {
         </Container>
       </main>
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
