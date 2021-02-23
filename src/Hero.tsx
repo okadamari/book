@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Hero() {
+export default function Hero(): JSX.Element {
   const classes = useStyles();
 
   return (
