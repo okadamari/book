@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Album() {
+export default function Hero() {
   const classes = useStyles();
 
   return (
