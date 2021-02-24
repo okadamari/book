@@ -1,5 +1,5 @@
-import React from "react";
-import { BookDescription } from "../types/BookDescription";
+import React from 'react';
+import { BookDescription } from '../types/BookDescription';
 
 const BookItem = (description: BookDescription) => {
   const { title, authors, thumbnail } = description;

@@ -1,6 +1,6 @@
-import React from "react";
-import { BookToRead } from "../types/BookToRead";
-import BookItem from "./BookItem";
+import React from 'react';
+import { BookToRead } from '../types/BookToRead';
+import BookItem from './BookItem';
 
 type BookRowProps = {
   book: BookToRead;

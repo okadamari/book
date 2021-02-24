@@ -1,4 +1,4 @@
-import { BookDescription } from "./BookDescription";
+import { BookDescription } from './BookDescription';
 
 export type BookToRead = {
   id: number;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -15,31 +15,32 @@ import Container from '@material-ui/core/Container';
 import Footer from './Footer';
 import Hero from './Hero';
 
-import "./App.css";
-import { BookToRead } from "../types/BookToRead";
-import BookRow from "./BookRow";
+import './App.css';
+import { BookToRead } from '../types/BookToRead';
+import BookRow from './BookRow';
 
-import Modal from "react-modal";
-import BookSearchDialog from "./BookSearchDialog";
+import Modal from 'react-modal';
+import BookSearchDialog from './BookSearchDialog';
 
-import {BookDescription} from "../types/BookDescription";
-const APP_KEY = "react-hooks-tutorial"
+import { BookDescription } from '../types/BookDescription';
 
-Modal.setAppElement("#root");
+const APP_KEY = 'react-hooks-tutorial';
+
+Modal.setAppElement('#root');
 
 const customStyles = {
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.8)"
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
     padding: 0,
-    transform: "translate(-50%, -50%)"
-  }
+    transform: 'translate(-50%, -50%)',
+  },
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -98,13 +99,11 @@ export default function Album(): JSX.Element {
     setBooks(newBooks);
   };
   const handleBookMemoChange = (id: number, memo: string) => {
-    const newBooks = books.map((book) => {
-      return book.id === id
-        ? { ...book, memo: memo }
-        : book;
-    });
+    const newBooks = books.map((book) => (book.id === id
+      ? { ...book, memo }
+      : book));
     setBooks(newBooks);
-  }
+  };
   const handleAddClick = () => {
     setModalIsOpen(true);
   };
@@ -113,22 +112,20 @@ export default function Album(): JSX.Element {
     setModalIsOpen(false);
   };
 
-  const bookRows = books.map((book) => {
-    return (
-      <BookRow
-        book={book}
-        key={book.id}
-        onMemoChange={(id, memo) => {handleBookMemoChange(id, memo)}}
-        onDelete={(id) => {handleBookDelete(id)}}
-      />
-    );
-  });
+  const bookRows = books.map((book) => (
+    <BookRow
+      book={book}
+      key={book.id}
+      onMemoChange={(id, memo) => { handleBookMemoChange(id, memo); }}
+      onDelete={(id) => { handleBookDelete(id); }}
+    />
+  ));
 
   const handleBookAdd = (book: BookDescription) => {
-    const newBook: BookToRead = { book, id: Date.now(), memo: "" };
+    const newBook: BookToRead = { book, id: Date.now(), memo: '' };
     const newBooks = [...books, newBook];
     setBooks(newBooks);
-  }
+  };
 
   return (
     <>
@@ -144,19 +141,19 @@ export default function Album(): JSX.Element {
       <main>
         <Hero />
         <section className="nav">
-        <h1>読みたい本リスト</h1>
-        <div className="button-like" onClick={handleAddClick}>
-          本を追加
-        </div>
-      </section>
-      <section className="books">{bookRows}</section>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={handleModalClose}
-        style={customStyles}
-      >
-        <BookSearchDialog maxResults={20} onBookAdd={(b) => handleBookAdd(b)} />
-      </Modal>
+          <h1>読みたい本リスト</h1>
+          <div className="button-like" onClick={handleAddClick}>
+            本を追加
+          </div>
+        </section>
+        <section className="books">{bookRows}</section>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={handleModalClose}
+          style={customStyles}
+        >
+          <BookSearchDialog maxResults={20} onBookAdd={(b) => handleBookAdd(b)} />
+        </Modal>
 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>

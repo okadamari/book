@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { BookDescription } from "../types/BookDescription";
-import BookSearchItem from "./BookSearchItem";
+import React, { useState, useEffect } from 'react';
+import { BookDescription } from '../types/BookDescription';
+import BookSearchItem from './BookSearchItem';
 
 function buildSearchUrl(title: string, author: string, maxResults: number): string {
-  let url = "https://www.googleapis.com/books/v1/volumes?q=";
-  const conditions: string[] = []
+  const url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  const conditions: string[] = [];
   if (title) {
     conditions.push(`intitle:${title}`);
   }
   if (author) {
     conditions.push(`inauthor:${author}`);
   }
-  return url + conditions.join('+') + `&maxResults=${maxResults}`;
+  return `${url + conditions.join('+')}&maxResults=${maxResults}`;
 }
 
 function extractBooks(json: any): BookDescription[] {
-  const items: any[] = json.items;
+  const { items } = json;
   return items.map((item: any) => {
-    const volumeInfo: any = item.volumeInfo;
+    const { volumeInfo } = item;
     return {
       title: volumeInfo.title,
-      authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : "",
-      thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : "",
-    }
+      authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : '',
+      thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : '',
+    };
   });
 }
 
@@ -33,20 +33,16 @@ type BookSearchDialogProps = {
 
 const BookSearchDialog = (props: BookSearchDialogProps) => {
   const [books, setBooks] = useState([] as BookDescription[]);
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     if (isSearching) {
       const url = buildSearchUrl(title, author, props.maxResults);
       fetch(url)
-        .then((res) => {
-          return res.json();
-        })
-        .then((json) => {
-          return extractBooks(json);
-        })
+        .then((res) => res.json())
+        .then((json) => extractBooks(json))
         .then((books) => {
           setBooks(books);
         })
@@ -67,7 +63,7 @@ const BookSearchDialog = (props: BookSearchDialogProps) => {
 
   const handleSearchClick = () => {
     if (!title && !author) {
-      alert("条件を入力してください");
+      alert('条件を入力してください');
       return;
     }
     setIsSearching(true);
@@ -77,15 +73,13 @@ const BookSearchDialog = (props: BookSearchDialogProps) => {
     props.onBookAdd(book);
   };
 
-  const bookItems = books.map((b, idx) => {
-    return (
-      <BookSearchItem
-        description={b}
-        onBookAdd={(b) => handleBookAdd(b)}
-        key={idx}
-      />
-    );
-  });
+  const bookItems = books.map((b, idx) => (
+    <BookSearchItem
+      description={b}
+      onBookAdd={(b) => handleBookAdd(b)}
+      key={idx}
+    />
+  ));
 
   return (
     <div className="dialog">

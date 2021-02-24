@@ -1,6 +1,6 @@
-import React from "react";
-import { BookDescription } from "../types/BookDescription";
-import BookItem from "./BookItem";
+import React from 'react';
+import { BookDescription } from '../types/BookDescription';
+import BookItem from './BookItem';
 
 type BookSearchItemProps = {
   description: BookDescription;
