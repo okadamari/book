@@ -12,17 +12,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Modal from 'react-modal';
+
+import { BookToRead } from '../types/BookToRead';
+import { BookDescription } from '../types/BookDescription';
 import Footer from './Footer';
 import Hero from './Hero';
-
-import './App.css';
-import { BookToRead } from '../types/BookToRead';
 import BookRow from './BookRow';
-
-import Modal from 'react-modal';
 import BookSearchDialog from './BookSearchDialog';
 
-import { BookDescription } from '../types/BookDescription';
+import './App.css';
 
 const APP_KEY = 'react-hooks-tutorial';
 
