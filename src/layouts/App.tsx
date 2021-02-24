@@ -141,9 +141,9 @@ export default function Album(): JSX.Element {
         <Hero />
         <section className="nav">
           <h1>読みたい本リスト</h1>
-          <div className="button-like" onClick={handleAddClick}>
+          <button type="button" className="button-like" onClick={handleAddClick}>
             本を追加
-          </div>
+          </button>
         </section>
         <section className="books">{bookRows}</section>
         <Modal
