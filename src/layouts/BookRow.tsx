@@ -32,9 +32,13 @@ const BookRow = (props: BookRowProps): JSX.Element => {
         value={memo}
         onChange={handleMemoChange}
       />
-      <div className="delete-row" onClick={handleDeleteClick}>
+      <button
+        type="button"
+        className="delete-row"
+        onClick={handleDeleteClick}
+      >
         削除
-      </div>
+      </button>
     </div>
   );
 };
