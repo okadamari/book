@@ -32,7 +32,7 @@ type BookSearchDialogProps = {
 };
 
 const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
-  const [books, setBooks] = useState([] as BookDescription[]);
+  const [searchedBooks, setBooks] = useState([] as BookDescription[]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -74,7 +74,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
     props.onBookAdd(book);
   };
 
-  const bookItems = books.map((b, idx) => (
+  const bookItems = searchedBooks.map((b, idx) => (
     <BookSearchItem
       description={b}
       onBookAdd={(b) => handleBookAdd(b)}
