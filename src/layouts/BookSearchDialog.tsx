@@ -36,10 +36,11 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const { maxResults } = props;
 
   useEffect(() => {
     if (isSearching) {
-      const url = buildSearchUrl(title, author, props.maxResults);
+      const url = buildSearchUrl(title, author, maxResults);
       fetch(url)
         .then((res) => res.json())
         .then((json) => extractBooks(json))
@@ -51,7 +52,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
         });
     }
     setIsSearching(false);
-  }, [author, isSearching, props.maxResults, title]);
+  }, [author, isSearching, maxResults, title]);
 
   function handleTitleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
