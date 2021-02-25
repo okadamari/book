@@ -13,9 +13,9 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   };
   return (
     <div className="book-item">
-      <div onClick={handleAddBookClick}>
+      <button type="button" onClick={handleAddBookClick}>
         <span>+</span>
-      </div>
+      </button>
       <BookItem
         title={props.description.title}
         authors={props.description.authors}
