@@ -74,11 +74,11 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
     props.onBookAdd(book);
   };
 
-  const bookItems = searchedBooks.map((b, idx) => (
+  const bookItems = searchedBooks.map((b) => (
     <BookSearchItem
       description={b}
       onBookAdd={(book) => handleBookAdd(book)}
-      key={idx}
+      key={b.title}
     />
   ));
 
