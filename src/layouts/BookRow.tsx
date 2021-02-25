@@ -9,7 +9,8 @@ type BookRowProps = {
 };
 
 const BookRow = (props: BookRowProps): JSX.Element => {
-  const { book, memo } = props.book;
+  const { book: propsBook } = props;
+  const { book, memo } = propsBook;
 
   const handleMemoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.onMemoChange(props.book.id, e.target.value);
