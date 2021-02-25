@@ -97,9 +97,13 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
             placeholder="著者名で検索"
           />
         </div>
-        <div className="button-like" onClick={handleSearchClick}>
+        <button
+          type="button"
+          className="button-like"
+          onClick={handleSearchClick}
+        >
           検索
-        </div>
+        </button>
       </div>
       <div className="books">{bookItems}</div>
     </div>
