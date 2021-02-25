@@ -11,15 +11,17 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   const handleAddBookClick = () => {
     props.onBookAdd(props.description);
   };
+  const { description } = props;
+  const { title, authors, thumbnail } = description;
   return (
     <div className="book-item">
       <button type="button" onClick={handleAddBookClick}>
         <span>+</span>
       </button>
       <BookItem
-        title={props.description.title}
-        authors={props.description.authors}
-        thumbnail={props.description.thumbnail}
+        title={title}
+        authors={authors}
+        thumbnail={thumbnail}
       />
     </div>
   );
