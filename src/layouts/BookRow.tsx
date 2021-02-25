@@ -8,7 +8,7 @@ type BookRowProps = {
   onDelete: (id: number) => void;
 };
 
-const BookRow = (props: BookRowProps) => {
+const BookRow = (props: BookRowProps): JSX.Element => {
   const { book, memo } = props.book;
 
   const handleMemoChange = (e: React.ChangeEvent<HTMLInputElement>) => {

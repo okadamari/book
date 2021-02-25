@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookDescription } from '../types/BookDescription';
 
-const BookItem = (description: BookDescription) => {
+const BookItem = (description: BookDescription): JSX.Element => {
   const { title, authors, thumbnail } = description;
   return (
     <>

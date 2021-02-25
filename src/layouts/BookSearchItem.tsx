@@ -7,7 +7,7 @@ type BookSearchItemProps = {
   onBookAdd: (book: BookDescription) => void;
 };
 
-const BookSearchItem = (props: BookSearchItemProps) => {
+const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   const handleAddBookClick = () => {
     props.onBookAdd(props.description);
   };

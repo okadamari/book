@@ -31,7 +31,7 @@ type BookSearchDialogProps = {
   onBookAdd: (book: BookDescription) => void;
 };
 
-const BookSearchDialog = (props: BookSearchDialogProps) => {
+const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
   const [books, setBooks] = useState([] as BookDescription[]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
