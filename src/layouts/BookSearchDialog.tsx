@@ -48,7 +48,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
           setBooks(books);
         })
         .catch((err) => {
-          console.error(err);
+          throw new Error(err);
         });
     }
     setIsSearching(false);
