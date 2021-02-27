@@ -18,10 +18,11 @@ function extractBooks(json: any): BookDescription[] {
   const { items } = json;
   return items.map((item: any) => {
     const { volumeInfo } = item;
+    const { title, authors, imageLinks } = volumeInfo;
     return {
-      title: volumeInfo.title,
-      authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : '',
-      thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : '',
+      title,
+      authors: authors ? authors.join(', ') : '',
+      thumbnail: imageLinks ? imageLinks.smallThumbnail : '',
     };
   });
 }
