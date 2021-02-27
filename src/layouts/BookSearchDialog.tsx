@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookDescription } from '../types/BookDescription';
+import { GoogleBooksAPIResults } from '../types/GoogleBooksAPIResults';
 import BookSearchItem from './BookSearchItem';
 
 function buildSearchUrl(title: string, author: string, maxResults: number): string {
@@ -14,15 +15,15 @@ function buildSearchUrl(title: string, author: string, maxResults: number): stri
   return `${url + conditions.join('+')}&maxResults=${maxResults}`;
 }
 
-function extractBooks(json: any): BookDescription[] {
+function extractBooks(json: GoogleBooksAPIResults): BookDescription[] {
   const { items } = json;
-  return items.map((item: any) => {
+  return items.map((item) => {
     const { volumeInfo } = item;
-    const { title, authors, imageLinks } = volumeInfo;
+    const { title, authors, thumbnail } = volumeInfo;
     return {
       title,
-      authors: authors ? authors.join(', ') : '',
-      thumbnail: imageLinks ? imageLinks.smallThumbnail : '',
+      authors,
+      thumbnail,
     };
   });
 }
