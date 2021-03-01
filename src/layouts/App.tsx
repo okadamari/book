@@ -21,6 +21,8 @@ import Hero from './Hero';
 import BookRow from './BookRow';
 import BookSearchDialog from './BookSearchDialog';
 
+import SimpleDialog from './SimpleDialog';
+
 import './App.css';
 
 const APP_KEY = 'react-hooks-tutorial';
@@ -126,6 +128,18 @@ export default function Album(): JSX.Element {
     setBooks(newBooks);
   };
 
+  const emails = ['username@gmail.com', 'user02@gmail.com'];
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value:string) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
   return (
     <>
       <CssBaseline />
@@ -185,6 +199,21 @@ export default function Album(): JSX.Element {
             ))}
           </Grid>
         </Container>
+
+        <Typography variant="subtitle1">
+          Selected:
+          {selectedValue}
+        </Typography>
+        <br />
+        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          Open simple dialog
+        </Button>
+        <SimpleDialog
+          emails={emails}
+          selectedValue={selectedValue}
+          open={open}
+          onClose={handleClose}
+        />
       </main>
       <Footer />
     </>
