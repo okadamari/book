@@ -12,7 +12,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Modal from 'react-modal';
+import Dialog from '@material-ui/core/Dialog';
 
 import { BookToRead } from '../types/BookToRead';
 import { BookDescription } from '../types/BookDescription';
@@ -26,23 +26,6 @@ import SimpleDialog from './SimpleDialog';
 import './App.css';
 
 const APP_KEY = 'react-hooks-tutorial';
-
-Modal.setAppElement('#root');
-
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    padding: 0,
-    transform: 'translate(-50%, -50%)',
-  },
-};
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -160,13 +143,15 @@ export default function Album(): JSX.Element {
           </button>
         </section>
         <section className="books">{bookRows}</section>
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={handleModalClose}
-          style={customStyles}
+        <Dialog
+          fullWidth
+          maxWidth="sm"
+          onClose={handleModalClose}
+          aria-labelledby="simple-dialog-title"
+          open={modalIsOpen}
         >
           <BookSearchDialog maxResults={20} onBookAdd={(b) => handleBookAdd(b)} />
-        </Modal>
+        </Dialog>
 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
