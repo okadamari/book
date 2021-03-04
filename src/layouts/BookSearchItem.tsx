@@ -1,6 +1,8 @@
 import React from 'react';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import AddIcon from '@material-ui/icons/Add';
 import { BookDescription } from '../types/BookDescription';
-import BookItem from './BookItem';
 
 type BookSearchItemProps = {
   description: BookDescription;
@@ -15,14 +17,14 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   const { title, authors, imageLinks } = description;
   return (
     <div className="book-item">
-      <button type="button" onClick={handleAddBookClick}>
-        <span>+</span>
-      </button>
-      <BookItem
-        title={title}
-        authors={authors}
-        imageLinks={imageLinks}
-      />
+      <ListItem>
+        <AddIcon onClick={handleAddBookClick} />
+        <ListItemText
+          primary={title}
+          secondary={authors}
+        />
+        {imageLinks ? <img src={imageLinks.thumbnail} alt="" /> : null}
+      </ListItem>
     </div>
   );
 };
