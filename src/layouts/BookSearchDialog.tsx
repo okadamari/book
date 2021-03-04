@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Container from '@material-ui/core/Container';
 import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import List from '@material-ui/core/List';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
 import { BookDescription } from '../types/BookDescription';
 import { GoogleBooksAPIResults } from '../types/GoogleBooksAPIResults';
 import BookSearchItem from './BookSearchItem';
@@ -42,6 +49,18 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
   const [author, setAuthor] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const { maxResults, open, onClose } = props;
+  const useStyles = makeStyles((theme: Theme) => createStyles({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+      '& .MuiButtonBase-root': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+  }));
   useEffect(() => {
     if (isSearching) {
       const url = buildSearchUrl(title, author, maxResults);
@@ -85,6 +104,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
       key={b.title}
     />
   ));
+  const classes = useStyles();
 
   return (
     <Dialog
@@ -94,28 +114,38 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <div className="operation">
-        <div className="conditions">
-          <input
-            type="text"
-            onChange={handleTitleInputChange}
-            placeholder="タイトルで検索"
-          />
-          <input
-            type="text"
-            onChange={handleAuthorInputChange}
-            placeholder="著者名で検索"
-          />
-        </div>
-        <button
-          type="button"
-          className="button-like"
-          onClick={handleSearchClick}
-        >
-          検索
-        </button>
-      </div>
-      <div className="books">{bookItems}</div>
+      <form className={classes.root} noValidate>
+        <Container>
+          <DialogTitle id="simple-dialog-title">Add books</DialogTitle>
+          <div className="operation">
+            <div>
+              <TextField
+                label="タイトルで検索"
+                variant="outlined"
+                onChange={handleTitleInputChange}
+              />
+            </div>
+            <div>
+              <TextField
+                label="著者名で検索"
+                variant="outlined"
+                onChange={handleAuthorInputChange}
+              />
+            </div>
+            <div>
+              <Button
+                variant="contained"
+                type="button"
+                className="button-like"
+                onClick={handleSearchClick}
+              >
+                検索
+              </Button>
+            </div>
+          </div>
+          <List className="books">{bookItems}</List>
+        </Container>
+      </form>
     </Dialog>
   );
 };
