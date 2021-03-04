@@ -12,7 +12,7 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
     props.onBookAdd(props.description);
   };
   const { description } = props;
-  const { title, authors, thumbnail } = description;
+  const { title, authors, imageLinks } = description;
   return (
     <div className="book-item">
       <button type="button" onClick={handleAddBookClick}>
@@ -21,7 +21,7 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
       <BookItem
         title={title}
         authors={authors}
-        thumbnail={thumbnail}
+        imageLinks={imageLinks}
       />
     </div>
   );

@@ -2,14 +2,14 @@ import React from 'react';
 import { BookDescription } from '../types/BookDescription';
 
 const BookItem = (description: BookDescription): JSX.Element => {
-  const { title, authors, thumbnail } = description;
+  const { title, authors, imageLinks } = description;
   return (
     <>
       <h2 title={title}>{title}</h2>
       <div className="authors" title={authors}>
         {authors}
       </div>
-      {thumbnail ? <img src={thumbnail} alt="" /> : null}
+      {imageLinks ? <img src={imageLinks.thumbnail} alt="" /> : null}
     </>
   );
 };

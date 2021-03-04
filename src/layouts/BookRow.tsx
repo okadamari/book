@@ -52,7 +52,7 @@ const BookRow = (props: BookRowProps): JSX.Element => {
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
-        image={book.thumbnail}
+        image={book.imageLinks.thumbnail}
         title={`${book.title}のサムネイル`}
       />
       <CardContent className={classes.cardContent}>

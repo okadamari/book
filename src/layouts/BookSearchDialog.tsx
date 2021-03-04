@@ -19,11 +19,11 @@ function extractBooks(json: GoogleBooksAPIResults): BookDescription[] {
   const { items } = json;
   return items.map((item) => {
     const { volumeInfo } = item;
-    const { title, authors, thumbnail } = volumeInfo;
+    const { title, authors, imageLinks } = volumeInfo;
     return {
       title,
       authors,
-      thumbnail,
+      imageLinks,
     };
   });
 }
