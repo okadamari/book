@@ -8,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Dialog from '@material-ui/core/Dialog';
 
 import { BookToRead } from '../types/BookToRead';
 import { BookDescription } from '../types/BookDescription';
@@ -139,15 +138,12 @@ export default function Album(): JSX.Element {
           </button>
         </section>
         <section className="books">{bookRows}</section>
-        <Dialog
-          fullWidth
-          maxWidth="sm"
+        <BookSearchDialog
           onClose={handleModalClose}
-          aria-labelledby="simple-dialog-title"
           open={modalIsOpen}
-        >
-          <BookSearchDialog maxResults={20} onBookAdd={(b) => handleBookAdd(b)} />
-        </Dialog>
+          maxResults={20}
+          onBookAdd={(b) => handleBookAdd(b)}
+        />
 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Dialog from '@material-ui/core/Dialog';
 import { BookDescription } from '../types/BookDescription';
 import { GoogleBooksAPIResults } from '../types/GoogleBooksAPIResults';
 import BookSearchItem from './BookSearchItem';
@@ -30,6 +31,8 @@ function extractBooks(json: GoogleBooksAPIResults): BookDescription[] {
 
 type BookSearchDialogProps = {
   maxResults: number;
+  open: boolean;
+  onClose: () => void;
   onBookAdd: (book: BookDescription) => void;
 };
 
@@ -38,8 +41,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [isSearching, setIsSearching] = useState(false);
-  const { maxResults } = props;
-
+  const { maxResults, open, onClose } = props;
   useEffect(() => {
     if (isSearching) {
       const url = buildSearchUrl(title, author, maxResults);
@@ -85,7 +87,13 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
   ));
 
   return (
-    <div className="dialog">
+    <Dialog
+      fullWidth
+      maxWidth="sm"
+      onClose={onClose}
+      aria-labelledby="simple-dialog-title"
+      open={open}
+    >
       <div className="operation">
         <div className="conditions">
           <input
@@ -108,7 +116,7 @@ const BookSearchDialog = (props: BookSearchDialogProps): JSX.Element => {
         </button>
       </div>
       <div className="books">{bookItems}</div>
-    </div>
+    </Dialog>
   );
 };
 
