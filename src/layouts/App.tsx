@@ -133,9 +133,7 @@ export default function Album(): JSX.Element {
         <Hero />
         <section className="nav">
           <h1>読みたい本リスト</h1>
-          <button type="button" className="button-like" onClick={handleAddClick}>
-            本を追加
-          </button>
+          <Button variant="contained" color="primary" onClick={handleAddClick}>本を追加</Button>
         </section>
         <section className="books">{bookRows}</section>
         <BookSearchDialog
