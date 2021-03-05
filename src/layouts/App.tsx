@@ -54,8 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Album(): JSX.Element {
   const classes = useStyles();
 
@@ -90,15 +88,6 @@ export default function Album(): JSX.Element {
   const handleModalClose = () => {
     setModalIsOpen(false);
   };
-
-  const bookRows = books.map((book) => (
-    <BookRow
-      book={book}
-      key={book.id}
-      onMemoChange={(id, memo) => { handleBookMemoChange(id, memo); }}
-      onDelete={(id) => { handleBookDelete(id); }}
-    />
-  ));
 
   const handleBookAdd = (book: BookDescription) => {
     const newBook: BookToRead = { book, id: Date.now(), memo: '' };
@@ -135,7 +124,6 @@ export default function Album(): JSX.Element {
           <h1>読みたい本リスト</h1>
           <Button variant="contained" color="primary" onClick={handleAddClick}>本を追加</Button>
         </section>
-        <section className="books">{bookRows}</section>
         <BookSearchDialog
           onClose={handleModalClose}
           open={modalIsOpen}
@@ -145,8 +133,14 @@ export default function Album(): JSX.Element {
 
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4} />
+            {books.map((book) => (
+              <Grid item key={book.id} xs={12} sm={6} md={4}>
+                <BookRow
+                  book={book}
+                  onMemoChange={(id, memo) => { handleBookMemoChange(id, memo); }}
+                  onDelete={(id) => { handleBookDelete(id); }}
+                />
+              </Grid>
             ))}
           </Grid>
         </Container>
