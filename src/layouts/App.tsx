@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
+import BookIcon from '@material-ui/icons/Book';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,8 +14,6 @@ import Footer from './Footer';
 import Hero from './Hero';
 import BookRow from './BookRow';
 import BookSearchDialog from './BookSearchDialog';
-
-import SimpleDialog from './SimpleDialog';
 
 import './App.css';
 
@@ -81,7 +78,7 @@ export default function Album(): JSX.Element {
       : book));
     setBooks(newBooks);
   };
-  const handleAddClick = () => {
+  const handleModalOpen = () => {
     setModalIsOpen(true);
   };
 
@@ -95,35 +92,19 @@ export default function Album(): JSX.Element {
     setBooks(newBooks);
   };
 
-  const emails = ['username@gmail.com', 'user02@gmail.com'];
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value:string) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
   return (
     <>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon className={classes.icon} />
+          <BookIcon className={classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
-            Album layout
+            読みたい本リスト
           </Typography>
         </Toolbar>
       </AppBar>
       <main>
-        <Hero />
-        <section className="nav">
-          <h1>読みたい本リスト</h1>
-          <Button variant="contained" color="primary" onClick={handleAddClick}>本を追加</Button>
-        </section>
+        <Hero onOpen={handleModalOpen} />
         <BookSearchDialog
           onClose={handleModalClose}
           open={modalIsOpen}
@@ -144,21 +125,6 @@ export default function Album(): JSX.Element {
             ))}
           </Grid>
         </Container>
-
-        <Typography variant="subtitle1">
-          Selected:
-          {selectedValue}
-        </Typography>
-        <br />
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          Open simple dialog
-        </Button>
-        <SimpleDialog
-          emails={emails}
-          selectedValue={selectedValue}
-          open={open}
-          onClose={handleClose}
-        />
       </main>
       <Footer />
     </>
