@@ -4,6 +4,6 @@ type imageLinks = {
 
 export type BookDescription = {
   title: string;
-  authors: string;
+  authors: string[];
   imageLinks: imageLinks;
 };

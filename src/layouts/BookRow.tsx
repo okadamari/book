@@ -39,6 +39,7 @@ const BookRow = (props: BookRowProps): JSX.Element => {
   const { book: propsBook } = props;
   const { book, memo } = propsBook;
   const classes = useStyles();
+  const authors = book.authors ? book.authors.join(', ') : '';
 
   const handleMemoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.onMemoChange(props.book.id, e.target.value);
@@ -60,7 +61,7 @@ const BookRow = (props: BookRowProps): JSX.Element => {
           {book.title}
         </Typography>
         <Typography>
-          {book.authors}
+          {authors}
         </Typography>
         <input
           type="text"
