@@ -17,16 +17,14 @@ const BookSearchItem = (props: BookSearchItemProps): JSX.Element => {
   const { title, authors, imageLinks } = description;
   const authorsText = authors ? authors.join(',') : '';
   return (
-    <div className="book-item">
-      <ListItem>
-        <AddIcon onClick={handleAddBookClick} />
-        <ListItemText
-          primary={title}
-          secondary={authorsText}
-        />
-        {imageLinks ? <img src={imageLinks.thumbnail} alt="" /> : null}
-      </ListItem>
-    </div>
+    <ListItem>
+      <AddIcon onClick={handleAddBookClick} />
+      <ListItemText
+        primary={title}
+        secondary={authorsText}
+      />
+      {imageLinks ? <img src={imageLinks.thumbnail} alt="" /> : null}
+    </ListItem>
   );
 };
 
