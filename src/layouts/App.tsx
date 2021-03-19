@@ -17,7 +17,7 @@ import BookSearchDialog from './BookSearchDialog';
 
 import './App.css';
 
-const APP_KEY = 'react-hooks-tutorial';
+const APP_KEY = 'books';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
