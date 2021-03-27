@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import BookIcon from '@material-ui/icons/Book';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { BookToRead } from '../types/BookToRead';
 import Footer from './Footer';
 import BooksToRead from './BooksToRead';
 
