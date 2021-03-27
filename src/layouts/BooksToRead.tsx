@@ -60,7 +60,7 @@ const BooksToRead = (): JSX.Element => {
 
   return (
     <>
-      <Hero onOpen={handleModalOpen} />
+      <Hero onOpen={handleModalOpen} title="読みたい本リスト" caption="読みたい本を追加しよう" />
       <BookSearchDialog
         onClose={handleModalClose}
         open={modalIsOpen}

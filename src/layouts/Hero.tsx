@@ -38,21 +38,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type HeroProps = {
+  title: string;
+  caption: string;
   onOpen: () => void;
 };
 
 export default function Hero(props: HeroProps): JSX.Element {
-  const { onOpen } = props;
+  const { title, caption, onOpen } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.heroContent}>
       <Container maxWidth="sm">
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          読みたい本リスト
+          {title}
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          読みたい本を追加しよう
+          {caption}
         </Typography>
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">

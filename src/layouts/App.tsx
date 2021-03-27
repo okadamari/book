@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Footer from './Footer';
 import BooksToRead from './BooksToRead';
+import BooksToDone from './BooksToDone';
 
 import './App.css';
 
@@ -32,6 +33,7 @@ export default function Album(): JSX.Element {
         </Toolbar>
       </AppBar>
       <main>
+        <BooksToDone />
         <BooksToRead />
       </main>
       <Footer />
