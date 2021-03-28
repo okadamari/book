@@ -40,12 +40,16 @@ const useStyles = makeStyles((theme) => ({
 type HeroProps = {
   title: string;
   caption: string;
-  onOpen: () => void;
+  onOpen?: () => void;
+  openButtonIsVisible?: boolean;
 };
 
-export default function Hero(props: HeroProps): JSX.Element {
-  const { title, caption, onOpen } = props;
+function Hero(props: HeroProps): JSX.Element {
+  const {
+    title, caption, onOpen, openButtonIsVisible,
+  } = props;
   const classes = useStyles();
+  const openButton = openButtonIsVisible ? <Button variant="contained" color="primary" onClick={onOpen}>本を追加</Button> : null;
 
   return (
     <div className={classes.heroContent}>
@@ -59,9 +63,7 @@ export default function Hero(props: HeroProps): JSX.Element {
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
-              <Button variant="contained" color="primary" onClick={onOpen}>
-                本を追加
-              </Button>
+              {openButton}
             </Grid>
           </Grid>
         </div>
@@ -69,3 +71,8 @@ export default function Hero(props: HeroProps): JSX.Element {
     </div>
   );
 }
+Hero.defaultProps = {
+  onOpen: () => false,
+  openButtonIsVisible: false,
+};
+export default Hero;
