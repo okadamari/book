@@ -6,14 +6,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { BookToRead } from '../types/BookToRead';
 import { BookDescription } from '../types/BookDescription';
 import Hero from './Hero';
-import BookSearchDialog from './BookSearchDialog';
 import BookRow from './BookRow';
 
 const APP_KEY = 'books';
 
 const BooksToRead = (): JSX.Element => {
   const [books, setBooks] = useState([] as BookToRead[]);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const useStyles = makeStyles((theme: Theme) => createStyles({
     cardGrid: {
@@ -44,29 +42,10 @@ const BooksToRead = (): JSX.Element => {
       : book));
     setBooks(newBooks);
   };
-  const handleModalOpen = () => {
-    setModalIsOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalIsOpen(false);
-  };
-
-  const handleBookAdd = (book: BookDescription) => {
-    const newBook: BookToRead = { book, id: Date.now(), memo: '' };
-    const newBooks = [...books, newBook];
-    setBooks(newBooks);
-  };
 
   return (
     <>
-      <Hero onOpen={handleModalOpen} title="読んだ本リスト" caption="読んだ本を追加しよう" />
-      <BookSearchDialog
-        onClose={handleModalClose}
-        open={modalIsOpen}
-        maxResults={20}
-        onBookAdd={(b) => handleBookAdd(b)}
-      />
+      <Hero title="読んだ本リスト" caption="読んだ本を追加しよう" />
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {books.map((book) => (
